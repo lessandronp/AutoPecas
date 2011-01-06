@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:panelGrid id="pgrMenuIcones" columns="10" columnClasses="colIcon1, colIcon2, colIcon3, colIcon4, colIcon5,
+                 colIcon6, colIcon7, colIcon8, colIcon9, colIcon10">
+
+        <h:commandLink title="Página Principal" action="/index?faces-redirect=true" immediate="true">
+            <h:graphicImage value="${facescontext.currentinstance}/img/home.png" width="48" height="48" />
+        </h:commandLink>
+        <h:commandLink title="Usuário" action="/jsf/usuario/exibirUsuarios?faces-redirect=true" 
+                       rendered="#{autenticacaoController.usuarioAutenticado.perfil.idPerfil == 1}">
+            <h:graphicImage value="${facescontext.currentinstance}/img/usuario.png" width="48" height="48" />
+        </h:commandLink>
+        <h:commandLink title="Perfil" action="/jsf/perfil/exibirPerfis?faces-redirect=true" 
+                       rendered="#{autenticacaoController.usuarioAutenticado.perfil.idPerfil == 1}">
+            <h:graphicImage value="${facescontext.currentinstance}/img/perfil.png" width="48" height="48" />
+        </h:commandLink>
+        <p:commandLink title="Sair" action="#{autenticacaoController.encerraSessao}" 
+                       immediate="true" update="pgrLogin">
+            <h:graphicImage value="${facescontext.currentinstance}/img/sair.png" width="48" height="48" />
+        </p:commandLink>
+    </h:panelGrid>
+</html>
+
+

@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <ui:insert name="title">
+            <title>Sistema de Auto Peças</title>
+        </ui:insert>
+        <ui:insert name="head">
+            <link href="${facesContext.externalContext.requestContextPath}/css/cupertino/skin.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/customTheme.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/layout.css" rel="stylesheet" type="text/css" />
+            <link href="${facesContext.externalContext.requestContextPath}/css/reset.css" rel="stylesheet" type="text/css" />
+            <link rel='stylesheet' type='text/css' href='${facesContext.externalContext.requestContextPath}/openFacesResources/org/openfaces/renderkit/default.css'/>
+            <!--[if IE]>
+                <link href="${facesContext.externalContext.requestContextPath}/css/ie.css" rel="stylesheet" type="text/css" />
+            <![endif]-->
+            <ui:insert name="javascript" />
+            <ui:insert name="css" />
+        </ui:insert>
+    </h:head>
+    <h:body>
+        <ui:insert name="body">
+            <f:view>
+                <h:form id="form" prependId="false">
+                    <div id="divPrincipal">
+                        <div id="divBanner" />
+                        <div id="divMenuIcones">
+                            <ui:include src="/resources/menuIcones.xhtml" />
+                        </div>
+                        <div id="divLogin">
+                            <ui:insert name="login" />
+                        </div>
+                        <div id="divMenuOpcoes">
+                            <ui:include src="/resources/menu.xhtml" />
+                        </div>
+                        <div id="divCentro">
+                            <ui:insert name="centro" />
+                            <div id="divPesquisa">
+                                <ui:insert name="pesquisa" />
+                            </div>
+                        </div>
+                        <div id="divRodape">
+                            <h:outputLabel style="color: #000000;" value="#{msg['mensagem.rodape']}" />
+                        </div>
+                    </div>
+                </h:form>
+            </f:view>
+        </ui:insert>
+    </h:body>
+</html>

@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <ui:composition template="/resources/template.xhtml">
+
+        <ui:define name="login">
+            <ui:include src="/resources/usuarioAutenticado.xhtml" />
+        </ui:define>
+
+        <ui:define name="javascript">
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/jquery.maskedinput-1.2.2.js"></script>
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/jquery-1.4.2.js"></script>
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/funcoes.js"></script>
+        </ui:define>
+
+        <ui:define name="centro">
+
+            <p:outputPanel id="oplDialog" layout="block">
+                <p:dialog id="dlgMsg" header="#{msg['modalPanel.msgAlerta']}"
+                          position="center" minWidth="300" width="300" visible="true"
+                          resizable="false" modal="true" rendered="#{perfilController.exibeDialog}">
+                    <h:panelGrid columns="1" cellspacing="5px">
+                        <h:outputLabel id="oplMensagem" value="#{perfilController.mensagem}" styleClass="fonteAlerta" />
+                        <h:commandButton id="cbtOk" value="#{msg['botao.ok']}"
+                                         action="/jsf/perfil/exibirPerfis?faces-redirect=true" immediate="true">
+                        </h:commandButton>
+                    </h:panelGrid>
+                </p:dialog>
+            </p:outputPanel>
+
+            <p:outputPanel id="pnlCentro" layout="block" style="position: relative; margin: auto; margin-top: 30px; width: 900px;">
+                <ui:include src="listaPerfis.xhtml" />
+                <ui:include src="corpoPerfil.xhtml" />
+            </p:outputPanel>
+        </ui:define>
+
+    </ui:composition>
+</html>

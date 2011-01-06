@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <ui:composition template="/resources/template.xhtml">
+
+        <ui:define name="login">
+            <ui:include src="/resources/login.xhtml" />
+        </ui:define>
+
+        <ui:define name="centro">
+
+            <p:outputPanel id="oplDialog" layout="block">
+                <p:dialog id="dlgMsg" header="#{msg['modalPanel.msgAlerta']}"
+                          position="center" minWidth="300" width="300" visible="true"
+                          resizable="false" modal="true" rendered="#{autenticacaoController.exibeDialog}">
+                    <h:panelGrid columns="1" cellspacing="5px">
+                        <h:outputLabel id="oplMensagem" value="#{msg['mensagem.expirouSessao']}" styleClass="fonteAlerta" />
+                        <p:commandButton  id="cbtOk" value="#{msg['botao.ok']}" immediate="true" 
+                                          ajax="false" action="#{autenticacaoController.fechaModal}" update="oplDialog, pgrLogin" />
+                    </h:panelGrid>
+                </p:dialog>
+            </p:outputPanel>
+
+            <p:panel header="Descrição do Sistema" style="position: relative;
+                     top: 150px; width: 600px; margin: auto;">
+                <h:outputText value="Sistema para Gerenciamento de Auto Peças.
+                              Permite o controle da sua Empresa de Auto Peças através do módulo de clientes,
+                              produtos, produtos disponíveis em estoque, pedido(s) realizado(s) pelo(s) cliente(s),
+                              controle de usuários de diversos níveis hierárquicos controlado através de perfis,
+                              fornecedores responsáveis pela venda dos produtos e formas de pagamento dos produtos.
+                              Soluções Web para diversos segmentos do mercado. Para maiores informações, favor,
+                              entrar em contato através dos tels: (32)3213-6295 / (32)8871-3868 / (32)9108-6144.
+                              Desenvolvido com as melhores ferramentas, permitido maior flexibilidade, robustez,
+                              manutenibilidade e usabilidade">
+                </h:outputText>
+                <br />
+                <h:outputLabel styleClass="fonteInfo" value="Para Autenticação, Login: usuario / Senha: 123" />
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
+

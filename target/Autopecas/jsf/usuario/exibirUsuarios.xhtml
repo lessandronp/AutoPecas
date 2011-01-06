@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+    <ui:composition template="/resources/template.xhtml">
+
+        <ui:define name="login">
+            <ui:include src="/resources/usuarioAutenticado.xhtml" />
+        </ui:define>
+
+        <ui:define name="javascript">
+            <script type="text/javascript">
+
+                function validaForm() {
+                    validacao = true;
+                    // Caso o tipo de cliente selecionado seja pessoa fisica
+                    cpfSemMascara = removeMascara('iptCpf');
+                    if (!validaCpf(cpfSemMascara)) {
+                        // Colocando a mensagem no h:message
+                        jQuery('#msgCpf').css({'color' : 'red', 'font-size' : '11px', 'font-weight' : 'bold', 'font-style' : 'italic'});
+                        jQuery('#msgCpf').text('CPF inválido. Tente novamente.');
+                        validacao = false;
+                    }
+                    removeMascara('iptCep');
+                    removeMascara('iptTelFixo');
+                    removeMascara('iptTelContato');
+                    return validacao;
+                }
+            </script>
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/jquery.maskedinput-1.2.2.js"></script>
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/jquery-1.4.2.js"></script>
+            <script type="text/javascript" src="${facesContext.externalContext.requestContextPath}/js/funcoes.js"></script>
+        </ui:define>
+
+        <ui:define name="centro">
+
+            <p:outputPanel id="oplDialog" layout="block">
+                <p:dialog id="dlgMsg" header="#{msg['modalPanel.msgAlerta']}"
+                          position="center" minWidth="300" width="300" visible="true"
+                          resizable="false" modal="true" rendered="#{usuarioController.exibeDialog}">
+                    <h:panelGrid columns="1" cellspacing="5px">
+                        <h:outputLabel id="oplMensagem" value="#{usuarioController.mensagem}" styleClass="fonteAlerta" />
+                        <p:commandButton  id="cbtOk" value="#{msg['botao.ok']}"
+                                          action="/jsf/usuario/exibirUsuarios?faces-redirect=true" immediate="true" />
+                    </h:panelGrid>
+                </p:dialog>
+            </p:outputPanel>
+
+            <p:outputPanel id="pnlCentro" layout="block" style="position: relative; margin: auto; margin-top: 30px; width: 900px;">
+                <ui:include src="listaUsuarios.xhtml" />
+                <ui:include src="corpoUsuario.xhtml" />
+            </p:outputPanel>
+        </ui:define>
+
+    </ui:composition>
+</html>

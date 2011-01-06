@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.prime.com.tr/ui">
+
+    <p:panel id="pnlListaPerfis" style="position: relative; margin: auto; margin-top: 20px; width: 900px;"
+             rendered="#{perfilController.exibeListaPerfis}">
+        <f:facet name="header">
+            <h:outputText value="#{msg['perfil.tabela.listaPerfis']}" />
+        </f:facet>
+
+        <p:dataTable id="tabPerfis" value="#{perfilController.listaPerfis}" var="perfil" rows="10"
+                     width="700px" emptyMessage="#{msg['tabela.nenhumRegistroEncontrado']}" paginator="true"
+                     paginatorPosition="bottom" style="position: relative; margin: auto; text-decoration: none;"
+                     firstPageLinkLabel="#{msg['tabela.primeiroRegistro']}" nextPageLinkLabel="#{msg['tabela.proximoRegistro']}"
+                     previousPageLinkLabel="#{msg['tabela.anteriorRegistro']}" lastPageLinkLabel="#{msg['tabela.ultimoRegistro']}"
+                     selectionMode="single">
+            <p:column sortBy="#{perfil.nmPerfil}">
+                <f:facet name="header">
+                    <h:outputText value="#{msg['perfil.tabela.nome']}" />
+                </f:facet>
+                <h:outputText value="#{perfil.nmPerfil}" />
+            </p:column>
+            <p:column>
+                <f:facet name="header">
+                    <h:outputText value="#{msg['perfil.tabela.descricao']}" />
+                </f:facet>
+                <h:outputText value="#{perfil.dsPerfil}" />
+            </p:column>
+            <p:column>
+                <p:commandLink id="cdlConsultaPerfil" action="#{perfilController.preparaConsulta}"
+                               update="pnlCentro">
+                    <h:graphicImage url="/img/buscar.png" title="#{msg['botao.consultar']}" />
+                    <f:setPropertyActionListener value="#{perfil}" target="#{perfilController.perfil}" />
+                </p:commandLink>
+            </p:column>
+            <p:column>
+                <p:commandLink id="cdlAlteraPerfil" action="#{perfilController.preparaAlteracao}"
+                               update="pnlCentro">
+                    <h:graphicImage url="/img/alterar.png" title="#{msg['botao.alterar']}" />
+                    <f:setPropertyActionListener value="#{perfil}" target="#{perfilController.perfil}" />
+                </p:commandLink>
+            </p:column>
+            <p:column>
+                <p:commandLink id="cdlExcluiPerfil" action="#{perfilController.preparaExclusao}"
+                               update="pnlCentro">
+                    <h:graphicImage url="/img/excluir.png" title="#{msg['botao.excluir']}" />
+                    <f:setPropertyActionListener value="#{perfil}" target="#{perfilController.perfil}" />
+                </p:commandLink>
+            </p:column>
+        </p:dataTable>
+
+        <f:facet name="footer">
+            <p:commandButton  value="#{msg['botao.voltar']}"  immediate="true"
+                              action="/index?faces-redirect=true" />
+            <h:outputText value="&#160;" />
+            <p:commandButton  value="#{msg['botao.incluir']}" action="#{perfilController.preparaInclusao}"
+                              update="pnlCentro" />
+        </f:facet>
+    </p:panel>
+
+</html>

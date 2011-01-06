@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+    <h:panelGrid id="pgrLogin">
+
+        <p:focus for="iptNomeUsuario" />
+
+        <h:panelGrid id="pgrAutenticacao" columns="4" columnClasses="colLabelNome, colNome, colBotaoOk, colMsgNome,
+                     colLabelSenha, colSenha, colBotaoLimpar, colMsgSenha" rendered="#{autenticacaoController.usuarioAutenticado == null}">
+            <h:outputText id="optNomeUsuario" value="#{msg['usuario.nome']}" />
+            <h:inputText id="iptNomeUsuario" value="#{autenticacaoController.usuario.dsLogin}"
+                         required="true"  requiredMessage="#{msg['usuario.login.requerido']}"
+                         maxlength="20" size="20" tabindex="1" />
+            <p:commandButton id="cbtLimpar" type="reset" immediate="true" title="Limpar" styleClass="botaoLimpar" tabindex="4"
+                             update="pgrLogin" />
+            <h:message id="msgNome" for="iptNomeUsuario" showDetail="true" styleClass="fonteAlerta" />
+
+            <h:outputText id="optSenhaUsuario" value="#{msg['usuario.senha']}" />
+            <h:inputSecret id="iptSenhaUsuario" value="#{autenticacaoController.usuario.dsSenha}" tabindex="2"
+                           required="true"  requiredMessage="#{msg['usuario.senha.requerido']}" />
+            <p:commandButton id="cbtLogar" styleClass="botaoOk" title="Entrar"
+                             action="#{autenticacaoController.autenticaUsuario}" tabindex="3"
+                             update="pgrMenuIcones, pgrLogin" />
+            <h:message id="msgSenha" for="iptSenhaUsuario" showDetail="true" styleClass="fonteAlerta" />
+
+            <h:inputHidden />
+            <h:inputHidden />
+            <h:inputHidden id="iphMensagem" />
+            <h:message for="iphMensagem" showDetail="true" styleClass="fonteAlerta" />
+        </h:panelGrid>
+
+        <h:panelGrid id="pgrAutenticado" columns="3" rendered="#{autenticacaoController.usuarioAutenticado != null}">
+            <h:outputLabel styleClass="fontePadrao" value="Seja Bem Vindo:" />
+            <h:outputText value="&#160;" />
+            <h:outputText styleClass="fontePadrao" value="#{autenticacaoController.usuarioAutenticado.nmUsuario}" />
+        </h:panelGrid>
+
+    </h:panelGrid>
+</html>
+
+

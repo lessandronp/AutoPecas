@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel id="pnlCorpoUsuario" style="position: relative; margin: auto; margin-top: 20px; width: 900px;"
+             rendered="#{!usuarioController.exibeListaUsuarios}">
+        <f:facet name="header">
+            <h:outputText value="#{msg['usuario.detalhe']}" />
+        </f:facet>
+
+        <h:panelGrid id="pgrUsuario" columns="3">
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.nome']}" />
+            </h:outputLabel>
+            <h:inputText id="iptNome" value="#{usuarioController.usuario.nmUsuario}" size="70" maxlength="100"
+                         onkeyup="this.value = somenteCaracteres(this.value)" required="true"
+                         requiredMessage="#{msg['usuario.nome.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptNome" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel id="oplCpf" styleClass="fontePadrao" value="#{msg['usuario.cpf']}" />
+            </h:outputLabel>
+            <p:inputMask id="iptCpf" mask="999.999.999-99" value="#{usuarioController.usuario.nuCpf}"
+                         required="true" maxlength="14" size="15" requiredMessage="#{msg['usuario.cpf.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message id="msgCpf" styleClass="fonteAlerta" for="iptCpf" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.rua']}" />
+            </h:outputLabel>
+            <h:inputText id="iptRua" value="#{usuarioController.usuario.dsRua}" size="70" maxlength="100"
+                         onkeyup="this.value = somenteCaracteres(this.value)"
+                         required="true" requiredMessage="#{msg['usuario.rua.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptRua" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.bairro']}" />
+            </h:outputLabel>
+            <h:inputText id="iptBairro" value="#{usuarioController.usuario.dsBairro}" size="51" maxlength="50"
+                         onkeyup="this.value = somenteCaracteres(this.value)" required="true"
+                         requiredMessage="#{msg['usuario.bairro.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptBairro" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.numero']}" />
+            </h:outputLabel>
+            <h:inputText id="iptNumero" value="#{usuarioController.usuario.nuLocal}" size="11" maxlength="10"
+                         onkeypress="return somenteNumeros(event, false)" required="true"
+                         requiredMessage="#{msg['usuario.numero.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptNumero" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.telFixo']}" />
+            </h:outputLabel>
+            <p:inputMask id="iptTelFixo" mask="(99)9999-9999" value="#{usuarioController.usuario.nuTelFixo}"
+                         size="14" maxlength="13" readonly="#{usuarioController.somenteLeitura}"
+                         required="true" requiredMessage="#{msg['usuario.telFixo.requerido']}" />
+            <h:message styleClass="fonteAlerta" for="iptTelFixo" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.telContato']}" />
+            </h:outputLabel>
+            <p:inputMask id="iptTelContato" mask="(99)9999-9999" value="#{usuarioController.usuario.nuTelContato}"
+                         size="14" maxlength="13" readonly="#{usuarioController.somenteLeitura}"
+                         required="true" requiredMessage="#{msg['usuario.telContato.requerido']}" />
+            <h:message styleClass="fonteAlerta" for="iptTelContato" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.cidade']}" />
+            </h:outputLabel>
+            <h:inputText id="iptCidade" value="#{usuarioController.usuario.dsCidade}" size="51" maxlength="50"
+                         onkeyup="this.value = somenteCaracteres(this.value)" required="true"
+                         requiredMessage="#{msg['usuario.cidade.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptCidade" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.estado']}" />
+            </h:outputLabel>
+            <h:inputText id="iptEstado" value="#{usuarioController.usuario.dsEstado}" size="3" maxlength="2"
+                         onkeyup="this.value = somenteCaracteres(this.value)" required="true"
+                         requiredMessage="#{msg['usuario.estado.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptEstado" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.login']}" />
+            </h:outputLabel>
+            <h:inputText id="iptLogin" value="#{usuarioController.usuario.dsLogin}" size="21" maxlength="20" required="true"
+                         requiredMessage="#{msg['usuario.login.requerido']}"
+                         readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="iptLogin" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.senha']}" />
+            </h:outputLabel>
+            <p:password id="pasSenha" value="#{usuarioController.usuario.dsSenha}" minLength="0" size="50" maxlength="20"
+                        weakLabel="#{msg['usuario.senha.fraca']}" goodLabel="#{msg['usuario.senha.boa']}"
+                        strongLabel="#{msg['usuario.senha.excelente']}" promptLabel="#{msg['usuario.senha.requerido']}"
+                        required="true" requiredMessage="#{msg['usuario.senha.requerido']}"
+                        readonly="#{usuarioController.somenteLeitura}" />
+            <h:message for="pasSenha" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.perfil']}" />
+            </h:outputLabel>
+            <h:selectOneMenu id="somPerfil" value="#{usuarioController.usuario.perfil}"
+                             disabled="#{usuarioController.somenteLeitura}">
+                <f:converter converterId="perfilConverter" />
+                <f:selectItems value="#{usuarioController.listaPerfis}" var="perfil" itemLabel="#{perfil.nmPerfil}" itemValue="#{perfil}" />
+            </h:selectOneMenu>
+            <h:message for="somPerfil" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel styleClass="fontePadrao" value="#{msg['usuario.cep']}" />
+            <p:inputMask id="iptCep" mask="99999-999" value="#{usuarioController.usuario.nuCep}"
+                         size="10" maxlength="8" readonly="#{usuarioController.somenteLeitura}">
+            </p:inputMask>
+            <h:message for="iptCep" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+        </h:panelGrid>
+
+        <f:facet name="footer">
+            <p:commandButton  value="#{msg['botao.fechar']}" action="/jsf/usuario/exibirUsuarios?faces-redirect=true"
+                              immediate="true" />
+            <h:outputText value="&#160;" />
+            <p:commandButton  id="cbtIncluir" value="#{msg['botao.incluir']}"
+                              rendered="#{usuarioController.exibeBotaoIncluir}" actionListener="#{usuarioController.salvar}"
+                              onclick="return validaForm();"
+                              update="pgrUsuario, oplDialog" />
+            <p:commandButton  id="cbtAlterar" value="#{msg['botao.alterar']}"
+                              rendered="#{usuarioController.exibeBotaoAlterar}" actionListener="#{usuarioController.alterar}"
+                              onclick="return validaForm();"
+                              update="pgrUsuario, oplDialog" />
+            <p:commandButton  id="cbtExcluir" value="#{msg['botao.excluir']}"
+                              rendered="#{usuarioController.exibeBotaoExcluir}" actionListener="#{usuarioController.excluir}"
+                              onclick="return validaForm();"
+                              update="pgrUsuario, oplDialog" />
+        </f:facet>
+    </p:panel>
+
+</html>
+

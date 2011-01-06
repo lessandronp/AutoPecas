@@ -1,0 +1,16 @@
+/*
+    Tripoli is a generic CSS standard for HTML rendering. 
+    Copyright (C) 2007 David Hellsing
+    
+    http://monc.se/tripoli/
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+*/
+.content legend{margin-bottom:1.6em} /* IE form margin bug */
+sup, sub{font-size:100%} /* IE superscript & subscript bug */
+* html .content textarea, * html .content input{padding:0} /* IE < 7 form fix */
+.content input[type='submit'], .content input[type='button']{padding:0} /* IE 7 button fix */
+.content legend+*{margin-top:0} /* we already added legend margin */
+a abbr, a acronym{text-decoration:underline} /* IE 7 bug */
+* html .content blockquote *{margin:.8em 0}

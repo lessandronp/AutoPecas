@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui">
+
+<p:menubar autoSubmenuDisplay="true" effect="NONE">
+	<p:submenu id="subCadastro" label="Cadastro">
+		<h:graphicImage url="/img/bd.png" />
+		<p:menuitem>
+			<p:commandLink value="Home..." action="/index?faces-redirect=true"
+				styleClass="fonteMenu" ajax="single" immediate="true" />
+		</p:menuitem>
+		<p:menuitem>
+			<p:commandLink value="Perfil..."
+				action="/jsf/perfil/exibirPerfis?faces-redirect=true"
+				styleClass="fonteMenu" ajax="single"
+				rendered="#{autenticacaoController.usuarioAutenticado.perfil.idPerfil == 1}" />
+		</p:menuitem>
+		<p:menuitem>
+			<p:commandLink value="Usuário..."
+				action="/jsf/usuario/exibirUsuarios?faces-redirect=true"
+				styleClass="fonteMenu" ajax="single"
+				rendered="#{autenticacaoController.usuarioAutenticado.perfil.idPerfil == 1}" />
+		</p:menuitem>
+	</p:submenu>
+	<p:submenu label="Sair">
+		<p:menuitem>
+			<p:commandLink value="Encerrar Sessão..."
+				action="#{autenticacaoController.encerraSessao}"
+				styleClass="fonteMenu" ajax="single" immediate="true"
+				update="pgrLogin" />
+		</p:menuitem>
+	</p:submenu>
+</p:menubar>
+</html>
+
+

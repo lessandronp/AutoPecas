@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
+    <p:panel id="pnlCorpoPerfil" style="position: relative; margin: auto; margin-top: 20px; width: 900px;"
+             rendered="#{!perfilController.exibeListaPerfis}">
+        <f:facet name="header">
+            <h:outputText value="#{msg['perfil.detalhe']}" />
+        </f:facet>
+
+        <h:panelGrid id="pgrPerfil" columns="3">
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['perfil.nome']}" />
+            </h:outputLabel>
+            <h:inputText id="iptNome" value="#{perfilController.perfil.nmPerfil}" size="21" maxlength="20"
+                         onkeyup="this.value = somenteCaracteres(this.value)" required="true" requiredMessage="#{msg['perfil.nome.requerido']}"
+                         readonly="#{perfilController.somenteLeitura}" />
+            <h:message for="iptNome" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+            <h:outputLabel value="*" styleClass="fonteAlerta">
+                <h:outputLabel styleClass="fontePadrao" value="#{msg['perfil.descricao']}" />
+            </h:outputLabel>
+            <h:inputText id="iptDescricao" value="#{perfilController.perfil.dsPerfil}" size="61" maxlength="60"
+                         onkeyup="this.value = somenteCaracteres(this.value)"
+                         required="true" requiredMessage="#{msg['perfil.descricao.requerido']}"
+                         readonly="#{perfilController.somenteLeitura}" />
+            <h:message for="iptDescricao" styleClass="fonteAlerta" showDetail="true" showSummary="false" />
+
+        </h:panelGrid>
+
+        <f:facet name="footer">
+            <p:commandButton  value="#{msg['botao.fechar']}"
+                              action="/jsf/perfil/exibirPerfis?faces-redirect=true"
+                              immediate="true" />
+            <h:outputText value="&#160;" />
+            <p:commandButton  id="cbtIncluir" value="#{msg['botao.incluir']}"
+                              rendered="#{perfilController.exibeBotaoIncluir}" actionListener="#{perfilController.salvar}"
+                              update="pgrPerfil, oplDialog" />
+            <p:commandButton  id="cbtAlterar" value="#{msg['botao.alterar']}"
+                              rendered="#{perfilController.exibeBotaoAlterar}" actionListener="#{perfilController.alterar}"
+                              update="pgrPerfil, oplDialog" />
+            <p:commandButton  id="cbtExcluir" value="#{msg['botao.excluir']}"
+                              rendered="#{perfilController.exibeBotaoExcluir}" actionListener="#{perfilController.excluir}"
+                              update="pgrPerfil, oplDialog" />
+        </f:facet>
+    </p:panel>
+
+</html>
+
